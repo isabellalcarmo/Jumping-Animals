@@ -1,25 +1,76 @@
 /* Obtemos a classe CSS do bichinho */
+const emailField = document.getElementById("email");
+const validationButton = document.getElementById("validate");
+const selecaoBichinho = document.getElementById("selecionarBichinho");
+
+//const escolhaBichinho = document.getElementsByName('bichinho');
+
 const bichinhoEscolha = this.document.querySelector('.bichinhoEscolha');
 const arbusto = this.document.querySelector('.arbusto');
 const boardJogo = this.document.querySelector('.board-jogo');
 
 const iniciarJogo = this.document.getElementById('iniciarJogo');
+const reiniciarJogo = this.document.getElementById('reiniciarJogo');
+
+const pontuacao = document.getElementById("pontuacao");
+const pontuacaoGeral = document.getElementById("pontuacaoGeral");
+
+var pontosPartida = 0;
+
+/* Salvamos a imagem do bichinho, sendo ela inicialmente vazia até que o jogo comece. Isso é feito para obtermos a mesma imagem na hora de reiniciarmos o jogo caso não façamos mudanças */
+var imagemBichinho = "";
 
 boardJogo.style.visibility = 'hidden';
 arbusto.style.visibility = 'hidden';
 arbusto.style.animationPlayState = "paused";
 
-iniciarJogo.onclick = function() {
+selecaoBichinho.style.display = "none";
+iniciarJogo.style.display = "none";
+reiniciarJogo.style.display = "none";
+pontuacaoGeral.style.display = "none";
+
+validationButton.onclick = validateEmail;
+iniciarJogo.onclick = startGame;
+reiniciarJogo.onclick = restartGame;
+
+function validateEmail() {
+    const mensagemInvalido = document.getElementById("emailInvalido");
+    const mensagemVazio = document.getElementById("emailVazio");
+    const regex = /^\\[bcdfghjklmnpqrstvwxysz]+[\[]([bcdfghjklmnpqrstvwxysz]+[\|][bcdfghjklmnpqrstvwxysz]+)(([|][bcdfghjklmnpqrstvwxysz]+)*)\]$/g;
+
+    if (emailField.value == "") {
+        mensagemVazio.style.display = "block";
+        mensagemInvalido.style.display = "none";
+    }
+    else {
+    mensagemVazio.style.display = "none";
+        if (regex.test(emailField.value)) {
+            mensagemInvalido.style.display = "none";
+            selecaoBichinho.style.display = "";
+            iniciarJogo.style.display = "";
+        } else {
+            mensagemInvalido.style.display = "block";
+            selecaoBichinho.style.display = "none";
+            iniciarJogo.style.display = "none";
+        }
+    }
+}
+
+function startGame() {
+    imagemBichinho = selecaoBichinho.value;
+
     boardJogo.style.visibility = 'visible';
     arbusto.style.visibility = 'visible';
     arbusto.style.animationPlayState = "running";
-    
+    reiniciarJogo.style.display = "inline-flex";
+    pontuacaoGeral.style.display = "block";
+
     const pular = () => {
         bichinhoEscolha.classList.add('pular');
 
         /* Para que seja possível com que a imagem pule novamente, é necessário realizar a execução de "pular" e removê-la para que seja possível adicioná-la novamente à cada "clique" no teclado */
         setTimeout(() => {
-            bichinhoEscolha.classList.remove("pular");
+        bichinhoEscolha.classList.remove("pular");
         }, 500);
     }
 
@@ -29,20 +80,54 @@ iniciarJogo.onclick = function() {
 
         /* O loop só deve continuar caso o bichinho tenha pulado e não tenha tido colisão com o arbusto, logo, obteremos a posição do bichinho também */
         const posArbusto = arbusto.offsetLeft;
-        const posBichinho = +window.getComputedStyle(bichinhoEscolha).bottom.replace('px','');
+        const posBichinhoBottom = +window.getComputedStyle(bichinhoEscolha).bottom.replace('px', '');
+        const posBichinhoLeft = +window.getComputedStyle(bichinhoEscolha).left.replace('px', '');
+        const lenArbusto = +arbusto.style.width.replace('px', '');
 
-        if ((posArbusto <= 90) && (posArbusto > 0) && (posBichinho < 100)){
+        if ((posArbusto <= 90) && (posArbusto > 0) && (posBichinhoBottom < 100)) {
             /* Quando o arbusto alcançar a posição definida do bichinho, iremos parar o jogo, primeiramente parando a animação do arbusto */
             arbusto.style.animation = 'none';
             arbusto.style.left = `${posArbusto}px`;
 
             bichinhoEscolha.style.animation = 'none';
-            bichinhoEscolha.style.bottom = `${posBichinho}px`;
+            bichinhoEscolha.style.bottom = `${posBichinhoBottom}px`;
+            bichinhoEscolha.src = "Imagens/fire-84.webp";
+
+            iniciarJogo.style.display = "none";
 
             clearInterval(loop);
+        } else {
+            if (posBichinhoLeft >= posArbusto + lenArbusto && posBichinhoBottom >= 100) {
+                pontosPartida += 1;
+                pontuacao.innerText = pontosPartida;
+            }
         }
     }, 10);
 
     document.addEventListener("keypress", pular);
 }
+
+function restartGame() {
+    pontosPartida = 0;
+    pontuacao.innerText = pontosPartida;
+
+    iniciarJogo.style.display = "none";
+    emailField.style.display = "none";
+    validationButton.style.display = "none";
+    bichinhoEscolha.attributeStyleMap.clear();
+
+    imagemNovo = document.getElementById("selecionarBichinho").value;
+    if (imagemNovo != imagemBichinho) {
+        imagemBichinho = imagemNovo;
+    }
+
+    arbusto.attributeStyleMap.clear();
+    bichinhoEscolha.attributeStyleMap.clear();
+    bichinhoEscolha.src = imagemBichinho;
+
+    startGame();
+}
+
+
+
 

@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+#emailInvalido, #emailVazio {
+    display: none;
+    color: #fc033d;
+    background-color: #f79eb3;
+    border: 2px solid #fc033d;
+    width: 200px;
+    margin-top: 5px;
+}
+
+#pontuacaoGeral {
+    margin-top: 10px;
+}
+
 /* Definindo a área do jogo*/
 /* Especificamente sua altura, largura, a borda da área e definindo o início da margem */
 .board-jogo {
@@ -76,3 +89,5 @@
         bottom: 0;
     }
 }
+
+
