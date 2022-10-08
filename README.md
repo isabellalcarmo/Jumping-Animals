@@ -1,5 +1,7 @@
-# progweb-2022.2
+<h1 align="center">Jumping Animals</h1>
 
-Grupo: Luiza Bretas & Isabella Carmo
+<div align="center">
+Luiza Bretas (1911867) & Isabella Carmo (1911867)
+</div>
 
-Matrícula: 1911867 & 1911907
+## ✨ Forma de jogar
