@@ -38,7 +38,8 @@
     bottom: 0;
     width: 150px;
     /* Definimos a duração da animação como "infinita" em um tempo linear de execução */
-    animation: animacao-arbusto 1.8s infinite linear;
+    animation: animacao-arbusto infinite linear;
+    animation-duration: 1.8s;
 }
 
 /* Definindo a posição e ações da formiga */

@@ -2,8 +2,17 @@
 const emailField = document.getElementById("email");
 const validationButton = document.getElementById("validate");
 const selecaoBichinho = document.getElementById("selecionarBichinho");
+const selecaoDificuldade = document.getElementById("selecionarDificuldade");
 
-//const escolhaBichinho = document.getElementsByName('bichinho');
+const velocidadesLista = ["1.8s", "1.4s", "1.0s"];
+var valueDificuldade = "";
+
+/*
+console.log(myArray);
+console.log(myArray[1].value);
+console.log(selecaoDificuldade);
+var velocidadeArbusto = 0;
+*/
 
 const bichinhoEscolha = this.document.querySelector('.bichinhoEscolha');
 const arbusto = this.document.querySelector('.arbusto');
@@ -11,6 +20,7 @@ const boardJogo = this.document.querySelector('.board-jogo');
 
 const iniciarJogo = this.document.getElementById('iniciarJogo');
 const reiniciarJogo = this.document.getElementById('reiniciarJogo');
+const sairJogo = this.document.getElementById('sairJogo');
 
 const pontuacao = document.getElementById("pontuacao");
 const pontuacaoGeral = document.getElementById("pontuacaoGeral");
@@ -25,13 +35,18 @@ arbusto.style.visibility = 'hidden';
 arbusto.style.animationPlayState = "paused";
 
 selecaoBichinho.style.display = "none";
+selecaoDificuldade.style.display = "none";
+
 iniciarJogo.style.display = "none";
 reiniciarJogo.style.display = "none";
+sairJogo.style.display = "none";
+
 pontuacaoGeral.style.display = "none";
 
 validationButton.onclick = validateEmail;
 iniciarJogo.onclick = startGame;
 reiniciarJogo.onclick = restartGame;
+sairJogo.onclick = exitGame;
 
 function validateEmail() {
     const mensagemInvalido = document.getElementById("emailInvalido");
@@ -43,15 +58,17 @@ function validateEmail() {
         mensagemInvalido.style.display = "none";
     }
     else {
-    mensagemVazio.style.display = "none";
+        mensagemVazio.style.display = "none";
         if (regex.test(emailField.value)) {
             mensagemInvalido.style.display = "none";
             selecaoBichinho.style.display = "";
+            selecaoDificuldade.style.display = "inline-block";
             iniciarJogo.style.display = "";
         } else {
             mensagemInvalido.style.display = "block";
             selecaoBichinho.style.display = "none";
             iniciarJogo.style.display = "none";
+            selecaoDificuldade.style.display = "none";
         }
     }
 }
@@ -62,15 +79,25 @@ function startGame() {
     boardJogo.style.visibility = 'visible';
     arbusto.style.visibility = 'visible';
     arbusto.style.animationPlayState = "running";
-    reiniciarJogo.style.display = "inline-flex";
     pontuacaoGeral.style.display = "block";
+
+    valueDificuldade = selecaoDificuldade.value;
+    console.log(arbusto.style.animationDuration);
+
+    if (valueDificuldade == "1") {
+        arbusto.style.animationDuration = velocidadesLista[0];
+    } else if (valueDificuldade == "2") {
+        arbusto.style.animationDuration = velocidadesLista[1];
+    } else {
+        arbusto.style.animationDuration = velocidadesLista[2];
+    }
 
     const pular = () => {
         bichinhoEscolha.classList.add('pular');
 
         /* Para que seja possível com que a imagem pule novamente, é necessário realizar a execução de "pular" e removê-la para que seja possível adicioná-la novamente à cada "clique" no teclado */
         setTimeout(() => {
-        bichinhoEscolha.classList.remove("pular");
+            bichinhoEscolha.classList.remove("pular");
         }, 500);
     }
 
@@ -94,6 +121,8 @@ function startGame() {
             bichinhoEscolha.src = "Imagens/fire-84.webp";
 
             iniciarJogo.style.display = "none";
+            reiniciarJogo.style.display = "inline-flex";
+            sairJogo.style.display = "inline-flex";
 
             clearInterval(loop);
         } else {
@@ -114,7 +143,6 @@ function restartGame() {
     iniciarJogo.style.display = "none";
     emailField.style.display = "none";
     validationButton.style.display = "none";
-    bichinhoEscolha.attributeStyleMap.clear();
 
     imagemNovo = document.getElementById("selecionarBichinho").value;
     if (imagemNovo != imagemBichinho) {
@@ -128,6 +156,6 @@ function restartGame() {
     startGame();
 }
 
-
-
-
+function exitGame() {
+    location.reload();
+}

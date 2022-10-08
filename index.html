@@ -5,34 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Jumping Animals</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="script.js" defer></script>
+    <link href="CSS/style.css" rel="stylesheet" type="text/css" />
+    <script src="Javascript/script.js" defer></script>
 </head>
 
 <body>
-    <h1 >Jumping Animals!</h1>
+    <h1>Jumping Animals!</h1>
     <br>
 
     <form>
-    <input id="email" maxlength="200" type="text" name="email" id="email" required="required"
-        class="form-control input-lg" title="Padrão de e-mail errado" placeholder="E-mail" />
-    <input id="validate" type="button" name="submit" value="Validar">
-    <p id="emailVazio">Para continuar, é necessário adicionar o email.</p>
-    <p id="emailInvalido">E-mail inválido!</p>
+        <input id="email" maxlength="200" type="text" name="email" id="email" required="required"
+        class="form-control input-lg" title="Padrão de e-mail errado" placeholder="E-mail: \xxx[yy|zz]" />
+        <input id="validate" type="button" name="submit" value="Validar">
+        <p id="emailVazio">Para continuar, é necessário adicionar o email.</p>
+        <p id="emailInvalido">E-mail inválido!</p>
     </form>
     <br>
+    <select id="selecionarDificuldade" style='display: none;'>
+        <option selected value='0' name="dificuldade" disabled>Escolha uma dificuldade...</option>
+        <option value="1" name="dificuldade">Fácil</option>
+        <option value="2" name="dificuldade">Normal</option>
+        <option value="3" name="dificuldade">Difícil</option>
+    </select>
 
     <select id="selecionarBichinho" onchange="document.getElementById('bichinho').src = this.value">
         <option selected value="Escolha um bichinho..." name="bichinho" disabled>Escolha um bichinho...</option>
-        <option value="./Imagens/Ant.gif" name="bichinho">Formiga</option>
-        <option value="./Imagens/Chicken.gif" name="bichinho">Pintinho</option>
-        <option value="./Imagens/Dog.gif" name="bichinho">Cachorro</option>
+        <option value="./Imagens/Formiga.gif" name="bichinho">Formiga</option>
+        <option value="./Imagens/Pintinho.gif" name="bichinho">Pintinho</option>
+        <option value="./Imagens/Cachorro.gif" name="bichinho">Cachorro</option>
     </select>
     <br>
     <br>
 
     <button id="iniciarJogo">Iniciar Jogo</button>
     <button id="reiniciarJogo">Reiniciar</button>
+    <button id="sairJogo">Sair</button>
 
     <h4 id="pontuacaoGeral">Pontuação: <span id="pontuacao">0</span></h4>
     <br>
