@@ -85,6 +85,9 @@ function iniciarJogoFunc() {
     arbusto.style.animationPlayState = "running";
     pontuacaoGeral.style.display = "block";
 
+    emailField.style.display = "none";
+    validationButton.style.display = "none";
+
     /* Obtendo os valores da imagem do bichinho e dificuldade */
     imagemBichinho = selecaoBichinho.value;
     valorDificuldade = selecaoDificuldade.value;
@@ -156,8 +159,6 @@ function reiniciarJogoFunc() {
 
     /* Escondendo os botões do HTML */
     iniciarJogo.style.display = "none";
-    emailField.style.display = "none";
-    validationButton.style.display = "none";
 
     /* Caso o jogador decida mudar o bichinho, o caminho da sua imagem irá mudar */
     imagemNovo = document.getElementById("selecionarBichinho").value;
