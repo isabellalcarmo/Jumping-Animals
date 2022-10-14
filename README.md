@@ -15,4 +15,4 @@ O jogador então terá que selecionar o nível de dificuldade do jogo e o seu bi
 Caso o jogador esbarre em algum dos obstáculos o mesmo terá a opção de clicar no botão de "Sair" ou no de "Reiniciar". O botão de "Sair" fará com que o jogador retorne à página inicial do jogo e o botão de "Reiniciar" permitirá que ele reinicie o jogo, com as mesmas configurações de nível de dificuldade e bichinho ou não, dependendo da sua preferência já que o mesmo poderá modificar isso pelas opções.
 
 ## ❗ Erros
-O jogo não está funcionando da forma esperada no Firefox.
+O jogo não está funcionando da forma esperada no Firefox. Entretanto, está funcionando perfeitamente no Chrome.
