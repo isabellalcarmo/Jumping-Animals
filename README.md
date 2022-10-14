@@ -8,7 +8,7 @@ Luiza Bretas (1911867) & Isabella Carmo (1911867)
 Pule o máximo de arbustos possíveis sem esbarrar neles e acumule pontos!
 
 ## 🎮 Forma de jogar
-Para que o jogador possa começar o jogo é preciso que o mesmo insira corretamente um endereço de e-mail no formato Priplanus que segue o seguinte formato: `\usuário[domínio|domínio|...|domínio]`, sendo o usuário e os domínios palavras compostas somente por consoantes. Todo e-mail deve possuir pelo menos dois domínios. Caso o formato do endereço de e-mail inserido seja inválido, o jogador deverá digitar um valor condizente com o formato pedido. Caso o formato seja válido, o jogador poderá prosseguir.
+Para que o jogador possa começar o jogo é preciso que o mesmo insira corretamente um endereço de e-mail no formato Priplanus que segue o seguinte padrão: `\usuário[domínio|domínio|...|domínio]`, sendo o usuário e os domínios palavras compostas somente por consoantes. Todo e-mail deve possuir pelo menos dois domínios. Caso o formato do endereço de e-mail inserido seja inválido, o jogador deverá digitar um valor condizente com o formato pedido. Caso o formato seja válido, o jogador poderá prosseguir.
 
 O jogador então terá que selecionar o nível de dificuldade do jogo e o seu bichinho de preferência e então deverá iniciar o jogo, clicando no botão "Iniciar Jogo". Assim que tal ação for feita o jogo será inicializado e bastará que o jogador pressione qualquer tecla do seu teclado para que o seu bichinho pule e ultrapasse todos os obstáculos.
 
