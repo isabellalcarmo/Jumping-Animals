@@ -2,6 +2,8 @@
 
 <div align="center">
 Luiza Bretas (1911867) & Isabella Carmo (1911867)
+
+Servidor: https://jumping-animals.netlify.app/
 </div>
 
 ## ✨ Funcionamento
